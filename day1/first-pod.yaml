@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: first-pod
+  labels:
+    kubernetes.io/pod.name: first-pod
+  annotations:
+    authorOfCode: "developerofthe month Imie i NAzwisko"
+    test: test
+#  namespace: kube-system
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+
