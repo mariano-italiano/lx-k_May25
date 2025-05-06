@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-web
+spec:
+  containers:
+  - image: nginx:1.14.2
+    name: nginx
+    volumeMounts:
+    - name: sharedvol
+      mountPath: /usr/share/nginx/html
+  initContainers:
+  - name: prepare
+    image: alpine:3.2
+    command: ["sh", "-c", "apk update; apk add git; git clone -b develop https://github.com/mariano-italiano/lx-k_May25.git /app-content"]
+    volumeMounts:
+    - name: sharedvol
+      mountPath: /app-content
+  volumes:
+  - name: sharedvol
+    emptyDir: {}
