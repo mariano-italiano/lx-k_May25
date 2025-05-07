@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx-secure
+  name: nginx-secure
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-secure
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx-secure
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+        volumeMounts:
+        - name: config-vol
+          mountPath: /etc/nginx
+        - name: htpasswd-vol
+          mountPath: /etc/nginx/conf
+      volumes:
+      - name: config-vol
+        configMap:
+          name: nginx-config
+      - name: htpasswd-vol
+        secret:
+          secretName: nginx-htpasswd
+status: {}

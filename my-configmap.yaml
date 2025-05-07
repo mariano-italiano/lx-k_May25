@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap
+data:
+  klucz1: wartosc1
+  appVersion: "v1.0"
+  cpuCount: "2"
+  config.json: |
+    {"attr1": "val1", "attr2": "Val2"} 
+  SCRIPT_X: |
+    #/bin/bash
+    uptime
+    hostname
