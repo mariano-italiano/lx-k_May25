@@ -5,6 +5,7 @@ metadata:
   labels:
     run: test-argo
   name: test-argo
+  namespace: test-argocd
 spec:
   containers:
   - image: nginx
