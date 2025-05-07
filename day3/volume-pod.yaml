@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-pod
+  labels:
+    volume: test
+spec:
+  volumes:
+  - name: nfs-vol
+    nfs:
+      server: 192.168.1.100
+      path: /var/nfs-share
+  containers:
+  - image: nginx
+    name: web1
+    volumeMounts:
+    - name: nfs-vol
+      mountPath: /usr/share/nginx/html
